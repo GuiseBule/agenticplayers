@@ -14,9 +14,10 @@
 <link rel="canonical" href="https://agenticplayersball.com/">
 
 <!-- Favicons -->
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=2">
+<link rel="shortcut icon" href="/favicon-32.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -97,27 +98,75 @@
   }
 
   /* Twinkle starfield */
-  .stars {
+  /* Tiled twinkle starfield — covers entire viewport, fixed so it stays as you scroll */
+  .stars,
+  .stars::before,
+  .stars::after {
     position: fixed;
     inset: 0;
     z-index: 0;
     pointer-events: none;
+    content: "";
+  }
+  .stars {
     background-image:
-      radial-gradient(1px 1px at 20% 30%, #fff 50%, transparent 100%),
-      radial-gradient(1px 1px at 70% 80%, #fff 50%, transparent 100%),
-      radial-gradient(1.5px 1.5px at 40% 60%, #fff 50%, transparent 100%),
-      radial-gradient(1px 1px at 85% 20%, #fff 50%, transparent 100%),
-      radial-gradient(1px 1px at 10% 75%, #fff 50%, transparent 100%),
-      radial-gradient(1.5px 1.5px at 55% 15%, #fff 50%, transparent 100%),
-      radial-gradient(1px 1px at 90% 50%, #fff 50%, transparent 100%),
-      radial-gradient(1px 1px at 30% 85%, #fff 50%, transparent 100%);
-    animation: twinkle 4s ease-in-out infinite;
+      radial-gradient(1px 1px at 12% 18%, #fff 50%, transparent 100%),
+      radial-gradient(1px 1px at 28% 42%, #fff 50%, transparent 100%),
+      radial-gradient(1.4px 1.4px at 47% 9%,  #fff 50%, transparent 100%),
+      radial-gradient(1px 1px at 64% 31%, #fff 50%, transparent 100%),
+      radial-gradient(1px 1px at 82% 55%, #fff 50%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 5% 73%, #fff 50%, transparent 100%),
+      radial-gradient(1px 1px at 19% 88%, #fff 50%, transparent 100%),
+      radial-gradient(1.4px 1.4px at 36% 67%, #fff 50%, transparent 100%),
+      radial-gradient(1px 1px at 55% 81%, #fff 50%, transparent 100%),
+      radial-gradient(1px 1px at 73% 96%, #fff 50%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 92% 78%, #fff 50%, transparent 100%),
+      radial-gradient(1px 1px at 88% 12%, #fff 50%, transparent 100%);
+    background-size: 600px 600px;
+    animation: twinkle 5s ease-in-out infinite;
     opacity: 0.6;
+  }
+  /* Second layer, offset and at a different scale, for organic density */
+  .stars::before {
+    background-image:
+      radial-gradient(1px 1px at 8% 36%,  #fff 50%, transparent 100%),
+      radial-gradient(1.2px 1.2px at 24% 6%,  #fff 50%, transparent 100%),
+      radial-gradient(1px 1px at 41% 24%, #fff 50%, transparent 100%),
+      radial-gradient(1px 1px at 59% 48%, #fff 50%, transparent 100%),
+      radial-gradient(1.6px 1.6px at 77% 14%, #fff 50%, transparent 100%),
+      radial-gradient(1px 1px at 95% 39%, #fff 50%, transparent 100%),
+      radial-gradient(1px 1px at 14% 62%, #fff 50%, transparent 100%),
+      radial-gradient(1.2px 1.2px at 33% 92%, #fff 50%, transparent 100%),
+      radial-gradient(1px 1px at 51% 70%, #fff 50%, transparent 100%),
+      radial-gradient(1px 1px at 68% 85%, #fff 50%, transparent 100%),
+      radial-gradient(1.4px 1.4px at 86% 64%, #fff 50%, transparent 100%);
+    background-size: 480px 480px;
+    animation: twinkle 7s ease-in-out infinite;
+    animation-delay: -2s;
+    opacity: 0.5;
+  }
+  /* Third layer, smaller tile, for distant micro-stars */
+  .stars::after {
+    background-image:
+      radial-gradient(0.8px 0.8px at 17% 27%, #fff 50%, transparent 100%),
+      radial-gradient(0.8px 0.8px at 38% 53%, #fff 50%, transparent 100%),
+      radial-gradient(0.8px 0.8px at 56% 11%, #fff 50%, transparent 100%),
+      radial-gradient(0.8px 0.8px at 72% 41%, #fff 50%, transparent 100%),
+      radial-gradient(0.8px 0.8px at 91% 28%, #fff 50%, transparent 100%),
+      radial-gradient(0.8px 0.8px at 6% 59%, #fff 50%, transparent 100%),
+      radial-gradient(0.8px 0.8px at 23% 78%, #fff 50%, transparent 100%),
+      radial-gradient(0.8px 0.8px at 45% 96%, #fff 50%, transparent 100%),
+      radial-gradient(0.8px 0.8px at 64% 71%, #fff 50%, transparent 100%),
+      radial-gradient(0.8px 0.8px at 84% 88%, #fff 50%, transparent 100%);
+    background-size: 320px 320px;
+    animation: twinkle 9s ease-in-out infinite;
+    animation-delay: -4s;
+    opacity: 0.4;
   }
 
   @keyframes twinkle {
     0%, 100% { opacity: 0.3; }
-    50%      { opacity: 0.8; }
+    50%      { opacity: 0.85; }
   }
 
   /* Disco glow behind the ball */
@@ -421,11 +470,53 @@
   .field input::placeholder,
   .field textarea::placeholder { color: #555; }
 
+  .field input.capitalize { text-transform: capitalize; }
+
   .field input:focus,
   .field textarea:focus {
-    border-color: rgba(255, 80, 180, 0.6);
+    border-color: rgba(77, 109, 255, 0.7);
     background: rgba(255, 255, 255, 0.06);
-    box-shadow: 0 0 0 3px rgba(255, 80, 180, 0.15);
+    box-shadow: 0 0 0 3px rgba(77, 109, 255, 0.18);
+  }
+
+  /* Inline validation states */
+  .field-error {
+    display: none;
+    margin-top: 0.4rem;
+    font-size: 0.78rem;
+    color: #ff5a3c;
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+  }
+
+  .field.is-invalid input,
+  .field.is-invalid textarea {
+    border-color: rgba(255, 90, 60, 0.65);
+    background: rgba(255, 90, 60, 0.05);
+  }
+
+  .field.is-invalid input:focus,
+  .field.is-invalid textarea:focus {
+    border-color: rgba(255, 90, 60, 0.9);
+    box-shadow: 0 0 0 3px rgba(255, 90, 60, 0.18);
+  }
+
+  .field.is-invalid .chips {
+    padding: 0.35rem;
+    margin: 0.2rem -0.35rem 0;
+    border-radius: 12px;
+    background: rgba(255, 90, 60, 0.05);
+    box-shadow: inset 0 0 0 1px rgba(255, 90, 60, 0.45);
+  }
+
+  .field.is-invalid .field-error {
+    display: block;
+    animation: errorIn 0.18s ease-out;
+  }
+
+  @keyframes errorIn {
+    from { opacity: 0; transform: translateY(-3px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
   .field textarea {
@@ -474,12 +565,12 @@
 
   .chip:has(input:checked) {
     color: #fff;
-    border-color: rgba(255, 80, 180, 0.6);
-    background: rgba(255, 80, 180, 0.12);
+    border-color: rgba(77, 109, 255, 0.7);
+    background: rgba(77, 109, 255, 0.14);
   }
 
   .chip:focus-within {
-    box-shadow: 0 0 0 3px rgba(255, 80, 180, 0.2);
+    box-shadow: 0 0 0 3px rgba(77, 109, 255, 0.22);
   }
 
   /* Referral toggle */
@@ -514,20 +605,20 @@
     width: 10px;
     height: 10px;
     border-radius: 2px;
-    background: linear-gradient(135deg, #ff3d77, #b04dff);
+    background: linear-gradient(135deg, #4d6dff, #00bcd4);
     transform: scale(0);
     transition: transform 0.15s ease;
   }
 
   .referral-check:checked + .referral-row .box {
-    border-color: rgba(255, 80, 180, 0.6);
-    background: rgba(255, 80, 180, 0.06);
+    border-color: rgba(77, 109, 255, 0.7);
+    background: rgba(77, 109, 255, 0.08);
   }
 
   .referral-check:checked + .referral-row .box::after { transform: scale(1); }
 
   .referral-check:focus-visible + .referral-row .box {
-    box-shadow: 0 0 0 3px rgba(255, 80, 180, 0.25);
+    box-shadow: 0 0 0 3px rgba(77, 109, 255, 0.28);
   }
 
   .referral-fields {
@@ -656,36 +747,42 @@
       <h2>Request An Invite</h2>
       <p class="lead">Tell us who you are, we will be in touch.</p>
 
-      <form id="signup-form" autocomplete="on">
+      <form id="signup-form" autocomplete="on" novalidate>
         <div class="row">
           <div class="field">
             <label for="firstName">First name</label>
-            <input id="firstName" name="firstName" type="text" autocomplete="given-name" required>
+            <input id="firstName" name="firstName" type="text" autocomplete="given-name" autocapitalize="words" class="capitalize" required>
+            <small class="field-error"></small>
           </div>
           <div class="field">
             <label for="lastName">Last name</label>
-            <input id="lastName" name="lastName" type="text" autocomplete="family-name" required>
+            <input id="lastName" name="lastName" type="text" autocomplete="family-name" autocapitalize="words" class="capitalize" required>
+            <small class="field-error"></small>
           </div>
         </div>
 
         <div class="field">
           <label for="email">Email</label>
           <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          <small class="field-error"></small>
         </div>
 
         <div class="field">
           <label for="linkedin">LinkedIn profile</label>
           <input id="linkedin" name="linkedin" type="url" autocomplete="url" placeholder="https://linkedin.com/in/yourname" required>
+          <small class="field-error"></small>
         </div>
 
         <div class="field">
           <label for="github">GitHub URL <span style="opacity:0.5; font-weight:400;">(optional)</span></label>
           <input id="github" name="github" type="url" autocomplete="url" placeholder="https://github.com/yourname">
+          <small class="field-error"></small>
         </div>
 
         <div class="field">
-          <label for="telegram">Telegram <span style="opacity:0.5; font-weight:400;">(public username, for the private group)</span></label>
+          <label for="telegram">Telegram Handle</label>
           <input id="telegram" name="telegram" type="text" autocomplete="off" placeholder="@yourhandle" required>
+          <small class="field-error"></small>
         </div>
 
         <div class="field">
@@ -695,11 +792,13 @@
             <label class="chip"><input type="checkbox" name="identity" value="Builder"> Builder</label>
             <label class="chip"><input type="checkbox" name="identity" value="Researcher"> Researcher</label>
           </div>
+          <small class="field-error"></small>
         </div>
 
         <div class="field">
           <label for="why">Why are you agentic?</label>
           <textarea id="why" name="why" rows="4" placeholder="Tell us what you have founded, built, or researched." required></textarea>
+          <small class="field-error"></small>
         </div>
 
         <input type="checkbox" id="referred" name="referred" class="referral-check">
@@ -711,7 +810,8 @@
         <div class="referral-fields" aria-hidden="true">
           <div class="field">
             <label for="referrerLinkedin">Who can vouch for you</label>
-            <input id="referrerLinkedin" name="referrerLinkedin" type="url" autocomplete="off" placeholder="https://linkedin.com/in/theirname">
+            <input id="referrerLinkedin" name="referrerLinkedin" type="text" autocomplete="off" placeholder="linkedin.com/in/theirname">
+            <small class="field-error"></small>
           </div>
 
         </div>
@@ -746,13 +846,132 @@
       const status = document.getElementById("form-status");
       if (!form) return;
 
+      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const linkedinRe = /^(https?:\/\/)?([a-z0-9-]+\.)?linkedin\.com\/(in|company|pub)\/[A-Za-z0-9_\-%.]+\/?/i;
+      const githubRe = /^(https?:\/\/)?(www\.)?github\.com\/[A-Za-z0-9_\-]+\/?/i;
+      const tgRe = /^@?[A-Za-z0-9_]{4,32}$|^https?:\/\/(t\.me|telegram\.me)\/[A-Za-z0-9_]{4,32}\/?$/i;
+
+      const rules = {
+        firstName: { required: true, msg: "First name is required" },
+        lastName:  { required: true, msg: "Last name is required" },
+        email:     { required: true, msg: "Email is required", test: v => emailRe.test(v), bad: "That doesn't look like a valid email" },
+        linkedin:  { required: true, msg: "LinkedIn URL is required", test: v => linkedinRe.test(v), bad: "Must be a LinkedIn profile URL (linkedin.com/in/yourname)" },
+        github:    { required: false, test: v => !v || githubRe.test(v), bad: "Must be a GitHub profile URL (github.com/yourname)" },
+        telegram:  { required: true, msg: "Telegram handle is required", test: v => tgRe.test(v), bad: "Use a public username, e.g. @yourhandle" },
+        why:       { required: true, msg: "Tell us what you have built or researched" },
+      };
+
+      function fieldOf(name) {
+        const el = form.elements[name];
+        return el ? el.closest(".field") : null;
+      }
+      function setError(name, msg) {
+        const wrap = fieldOf(name);
+        if (!wrap) return;
+        wrap.classList.add("is-invalid");
+        const slot = wrap.querySelector(".field-error");
+        if (slot) slot.textContent = msg;
+      }
+      function clearError(name) {
+        const wrap = fieldOf(name);
+        if (!wrap) return;
+        wrap.classList.remove("is-invalid");
+        const slot = wrap.querySelector(".field-error");
+        if (slot) slot.textContent = "";
+      }
+      function validateField(name) {
+        const rule = rules[name];
+        if (!rule) return true;
+        const el = form.elements[name];
+        const v = (el?.value || "").trim();
+        if (rule.required && !v) { setError(name, rule.msg); return false; }
+        if (v && rule.test && !rule.test(v)) { setError(name, rule.bad); return false; }
+        clearError(name);
+        return true;
+      }
+      function validateReferrer() {
+        const wrap = form.querySelector('#referrerLinkedin')?.closest(".field");
+        if (!wrap) return true;
+        const slot = wrap.querySelector(".field-error");
+        const referred = form.querySelector('#referred')?.checked;
+        const v = (form.elements["referrerLinkedin"]?.value || "").trim();
+        if (!referred) {
+          wrap.classList.remove("is-invalid");
+          if (slot) slot.textContent = "";
+          return true;
+        }
+        if (!v) {
+          wrap.classList.add("is-invalid");
+          if (slot) slot.textContent = "Add the LinkedIn URL of who referred you";
+          return false;
+        }
+        if (!linkedinRe.test(v)) {
+          wrap.classList.add("is-invalid");
+          if (slot) slot.textContent = "Must be a LinkedIn profile URL (linkedin.com/in/theirname)";
+          return false;
+        }
+        wrap.classList.remove("is-invalid");
+        if (slot) slot.textContent = "";
+        return true;
+      }
+      function validateIdentity() {
+        const checked = form.querySelectorAll('input[name="identity"]:checked').length;
+        const wrap = form.querySelector('input[name="identity"]')?.closest(".field");
+        if (!wrap) return true;
+        const slot = wrap.querySelector(".field-error");
+        if (checked === 0) {
+          wrap.classList.add("is-invalid");
+          if (slot) slot.textContent = "Pick at least one";
+          return false;
+        }
+        wrap.classList.remove("is-invalid");
+        if (slot) slot.textContent = "";
+        return true;
+      }
+
+      // Touch-on-blur: validate when user leaves a field
+      Object.keys(rules).forEach(name => {
+        const el = form.elements[name];
+        if (!el) return;
+        el.addEventListener("blur", () => validateField(name));
+        el.addEventListener("input", () => {
+          if (fieldOf(name)?.classList.contains("is-invalid")) validateField(name);
+        });
+      });
+      form.querySelectorAll('input[name="identity"]').forEach(el => {
+        el.addEventListener("change", validateIdentity);
+      });
+
+      // Referral wiring: re-validate on toggle, on blur, and on input
+      const refCheck = form.querySelector('#referred');
+      const refInput = form.querySelector('#referrerLinkedin');
+      if (refCheck) refCheck.addEventListener("change", validateReferrer);
+      if (refInput) {
+        refInput.addEventListener("blur", validateReferrer);
+        refInput.addEventListener("input", () => {
+          if (refInput.closest(".field").classList.contains("is-invalid")) validateReferrer();
+        });
+      }
+
       form.addEventListener("submit", async function (e) {
         e.preventDefault();
         status.className = "form-status";
         status.textContent = "";
 
+        // Validate everything; show all errors at once
+        const checks = Object.keys(rules).map(validateField);
+        checks.push(validateIdentity());
+        checks.push(validateReferrer());
+        if (checks.some(ok => !ok)) {
+          // Scroll to first invalid field for clarity
+          const firstBad = form.querySelector(".field.is-invalid");
+          if (firstBad) firstBad.scrollIntoView({ behavior: "smooth", block: "center" });
+          return;
+        }
+
         const submitBtn = form.querySelector(".submit");
         submitBtn.disabled = true;
+        const originalText = submitBtn.textContent;
         submitBtn.textContent = "Submitting...";
 
         const fd = new FormData(form);
@@ -778,16 +997,14 @@
             body: JSON.stringify(payload),
           });
           const data = await res.json().catch(() => ({}));
-          if (!res.ok) {
-            throw new Error(data.error || "Submission failed");
-          }
+          if (!res.ok) throw new Error(data.error || "Submission failed");
           const card = document.getElementById("signup-card");
           card.innerHTML = '<div class="signup-success"><h2>Thank you for applying.</h2><p>The Agentic Players Ball is a private circle for founders, builders, and researchers shaping the agentic era. Every application is reviewed by our members. If your work does not align with our membership, we may decline.</p><p>Either way, you will hear from us.</p></div>';
         } catch (err) {
           status.className = "form-status error";
           status.textContent = err.message || "Something went wrong. Try again.";
           submitBtn.disabled = false;
-          submitBtn.textContent = "Submit";
+          submitBtn.textContent = originalText;
         }
       });
     })();
