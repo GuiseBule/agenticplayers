@@ -18,15 +18,22 @@ export async function onRequestPost({ request, env }) {
   const email = (body.email || "").trim();
   const linkedin = (body.linkedin || "").trim();
   const github = (body.github || "").trim();
+  const telegramRaw = (body.telegram || "").trim();
   const why = (body.why || "").trim();
   const referrerLinkedin = (body.referrerLinkedin || "").trim();
   const identity = Array.isArray(body.identity) ? body.identity : (body.identity ? [body.identity] : []);
 
-  if (!firstName || !lastName || !email || !linkedin || !why) {
+  if (!firstName || !lastName || !email || !linkedin || !why || !telegramRaw) {
     return new Response(JSON.stringify({ error: "Missing required fields" }), { status: 400, headers: cors });
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return new Response(JSON.stringify({ error: "Invalid email" }), { status: 400, headers: cors });
+  }
+
+  let telegram = telegramRaw.replace(/^https?:\/\/(t\.me|telegram\.me)\//i, "").replace(/\/$/, "");
+  if (!telegram.startsWith("@")) telegram = "@" + telegram;
+  if (!/^@[A-Za-z0-9_]{4,32}$/.test(telegram)) {
+    return new Response(JSON.stringify({ error: "Invalid Telegram username (5-32 chars, letters/numbers/underscores, must be a public username)" }), { status: 400, headers: cors });
   }
 
   const allowedIdentity = new Set(["Founder", "Builder", "Researcher"]);
@@ -37,6 +44,7 @@ export async function onRequestPost({ request, env }) {
     "Last Name": lastName,
     "Email": email,
     "LinkedIn": linkedin,
+    "Telegram": telegram,
     "Why": why,
     "Status": "Applicant",
     "Submitted At": new Date().toISOString(),
