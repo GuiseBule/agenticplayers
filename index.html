@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Agentic Players Ball</title>
+<meta name="description" content="The Agentic Players Ball.">
+<link rel="icon" type="image/jpeg" href="agenticplayersballdiscoicon.jpg">
+<meta property="og:title" content="The Agentic Players Ball">
+<meta property="og:image" content="agenticplayersballdisco.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://agenticplayersball.com">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: #ffffff;
+    color: #111;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+  }
+
+  .glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80vmin;
+    height: 80vmin;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle,
+      rgba(255, 80, 180, 0.18) 0%,
+      rgba(80, 160, 255, 0.12) 40%,
+      rgba(255, 220, 80, 0.08) 70%,
+      transparent 100%);
+    filter: blur(40px);
+    z-index: 0;
+    animation: glowPulse 6s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+    50%      { opacity: 1;   transform: translate(-50%, -50%) scale(1.1); }
+  }
+
+  .ball-wrap {
+    position: relative;
+    z-index: 1;
+    width: min(60vmin, 520px);
+    aspect-ratio: 1 / 1;
+    animation: bob 5s ease-in-out infinite;
+  }
+
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-14px); }
+  }
+
+  .ball {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    animation: spin 24s linear infinite;
+    will-change: transform;
+    mix-blend-mode: multiply;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  .copy {
+    position: relative;
+    z-index: 1;
+    margin-top: 1.5rem;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 6vmin, 4rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, #ff3d77, #ffb84d, #4dc3ff, #b04dff, #ff3d77);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: hue 12s linear infinite;
+  }
+
+  @keyframes hue {
+    from { background-position: 0% 50%; }
+    to   { background-position: 300% 50%; }
+  }
+
+  .tagline {
+    font-size: clamp(0.95rem, 2vmin, 1.15rem);
+    color: #555;
+    max-width: 32ch;
+    margin: 0 auto;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 0;
+    right: 0;
+    font-size: 0.8rem;
+    color: #999;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    z-index: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ball, .ball-wrap, .glow, h1 { animation: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+
+  <div class="ball-wrap">
+    <img class="ball" src="agenticplayersballdisco.jpg" alt="The Agentic Players Ball">
+  </div>
+
+  <div class="copy">
+    <h1>The Agentic Players Ball</h1>
+    <p class="tagline">Coming soon.</p>
+  </div>
+
+  <div class="footer">agenticplayersball.com</div>
+</body>
+</html>
