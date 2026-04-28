@@ -684,16 +684,17 @@
     .row { grid-template-columns: 1fr; }
   }
 
-  /* Mobile portrait: tighten vertical spacing so the hero sits at the top
-     and the intro follows naturally instead of floating in dead space */
+  /* Mobile portrait: ball fills more of the viewport, content balanced
+     so the hero feels populated instead of floating in dead space */
   @media (max-width: 700px) {
     .hero {
       min-height: 100svh;
-      justify-content: flex-start;
-      padding: 2rem 1.25rem 1rem;
+      justify-content: center;
+      padding: 1.5rem 1.25rem;
     }
+    .ball-wrap { width: min(82vmin, 480px); }
     .copy { margin-top: 1.5rem; }
-    .intro { padding: 1.5rem 1.25rem 1rem; }
+    .intro { padding: 2rem 1.25rem 1rem; }
     .signup { padding-top: 3rem; }
   }
 
