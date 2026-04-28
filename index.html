@@ -240,13 +240,25 @@
   }
 
   .intro p {
-    font-size: clamp(1rem, 2.2vmin, 1.2rem);
-    line-height: 1.7;
-    color: #bbb;
+    font-size: clamp(1.15rem, 2.8vmin, 1.5rem);
+    font-weight: 500;
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+    color: #ececec;
     margin-bottom: 1rem;
   }
 
   .intro p:last-child { margin-bottom: 0; }
+
+  .intro .accent {
+    background: linear-gradient(90deg, #ff3d77, #ffb84d, #4dc3ff, #b04dff, #ff3d77);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: hue 12s linear infinite;
+    font-weight: 700;
+  }
 
   /* Form section */
   .signup {
@@ -419,7 +431,7 @@
 
   <section class="intro">
     <div class="intro-inner">
-      <p>A nonprofit social circle for the operators, founders, and builders<br>shaping the agentic era. We talk, we meet, and we play.</p>
+      <p>A nonprofit social circle for the operators, founders, and builders<br>shaping the <span class="accent">agentic era</span>. We talk, we meet, and we play.</p>
     </div>
   </section>
 
