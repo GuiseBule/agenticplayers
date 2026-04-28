@@ -205,6 +205,8 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
+    position: relative;
+    z-index: 1;
     animation: dance 4s ease-in-out infinite;
     transform-origin: 50% 90%;
     will-change: transform;
@@ -348,7 +350,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 3rem 2rem 5rem;
+    padding: 4.5rem 2rem 5rem;
     position: relative;
     z-index: 1;
   }
@@ -692,7 +694,7 @@
     }
     .copy { margin-top: 1.5rem; }
     .intro { padding: 1.5rem 1.25rem 1rem; }
-    .signup { padding-top: 1rem; }
+    .signup { padding-top: 3rem; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -705,9 +707,8 @@
   <div class="stars"></div>
 
   <section class="hero">
-    <div class="glow"></div>
-
     <div class="ball-wrap">
+      <div class="glow"></div>
       <img class="ball" src="agenticplayers.png" alt="The Agentic Players Ball">
       <span class="sparkle s1"></span>
       <span class="sparkle s2"></span>
@@ -837,7 +838,11 @@
     (function () {
       const stars = document.querySelector(".stars");
       if (!stars) return;
-      const COUNT = 140;
+      // Scale star count to viewport area so mobile density matches desktop
+      // (140 stars on a 1440x900 viewport = ~1 star per 9260px²)
+      const viewportArea = window.innerWidth * window.innerHeight;
+      const baseDensity = 140 / (1440 * 900);
+      const COUNT = Math.min(180, Math.max(40, Math.round(viewportArea * baseDensity)));
       const frag = document.createDocumentFragment();
       for (let i = 0; i < COUNT; i++) {
         const s = document.createElement("span");
