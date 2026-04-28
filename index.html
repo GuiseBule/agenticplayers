@@ -511,12 +511,13 @@
     letter-spacing: 0.01em;
   }
   .signup-success p {
-    margin: 0;
+    margin: 0 0 1.25rem;
     font-size: 1rem;
     line-height: 1.7;
     color: #bbb;
     text-wrap: balance;
   }
+  .signup-success p:last-child { margin-bottom: 0; }
 
   @media (max-width: 420px) {
     .row { grid-template-columns: 1fr; }
@@ -685,7 +686,7 @@
             throw new Error(data.error || "Submission failed");
           }
           const card = document.getElementById("signup-card");
-          card.innerHTML = '<div class="signup-success"><h2>Thank you for applying.</h2><p>The Agentic Players Ball is a private circle for founders, builders, and researchers shaping the agentic era. Every application is reviewed by our members. If your work does not align with our membership, we may decline. Either way, you will hear from us.</p></div>';
+          card.innerHTML = '<div class="signup-success"><h2>Thank you for applying.</h2><p>The Agentic Players Ball is a private circle for founders, builders, and researchers shaping the agentic era. Every application is reviewed by our members. If your work does not align with our membership, we may decline.</p><p>Either way, you will hear from us.</p></div>';
         } catch (err) {
           status.className = "form-status error";
           status.textContent = err.message || "Something went wrong. Try again.";
