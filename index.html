@@ -497,6 +497,9 @@
   .form-status.error { color: #ff7a9c; }
   .form-status.success { color: #8be0a4; }
 
+  .signup-card:has(.signup-success) {
+    max-width: 680px;
+  }
   .signup-success {
     text-align: center;
     max-width: 640px;
@@ -564,7 +567,7 @@
   <section class="signup">
     <div class="signup-card" id="signup-card">
       <h2>Request An Invite</h2>
-      <p class="lead">Tell us who you are, we might be in touch.</p>
+      <p class="lead">Tell us who you are, we will be in touch.</p>
 
       <form id="signup-form" autocomplete="on">
         <div class="row">
