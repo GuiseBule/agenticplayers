@@ -14,10 +14,11 @@
 <link rel="canonical" href="https://agenticplayersball.com/">
 
 <!-- Favicons -->
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=2">
-<link rel="shortcut icon" href="/favicon-32.png?v=2">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
+<link rel="icon" href="/favicon.ico?v=3" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=3">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=3">
+<link rel="shortcut icon" href="/favicon.ico?v=3">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -242,7 +243,7 @@
   }
 
   .tagline {
-    font-size: clamp(1.15rem, 2.6vmin, 1.5rem);
+    font-size: clamp(0.95rem, 4vw, 1.5rem);
     color: #f5f5f5;
     font-weight: 500;
     margin: 0 auto;
@@ -716,7 +717,7 @@
   <section class="intro">
     <div class="intro-inner">
       <p>A private circle for the founders, builders, and researchers <span class="accent">shaping the agentic era</span>. We talk, we meet, and we play.</p>
-      <p class="intro-detail">We bring together the people quietly building the next decade of agentic AI. Founders shipping autonomous products, engineers building agent infrastructure, and researchers pushing the frontier. Membership is by application and reviewed by existing members.</p>
+      <p class="intro-detail">We bring together the people quietly building the next decade of agentic AI. Founders shipping autonomous products, engineers building agent infrastructure, and researchers pushing the frontier. There is no membership fee. Existing members decide who fits.</p>
     </div>
   </section>
 
@@ -852,7 +853,7 @@
       const card = document.getElementById("signup-card");
       if (card && "IntersectionObserver" in window) {
         let interacted = false;
-        const PAUSE_MS = 5000;
+        const PAUSE_MS = 15000;
         const PULSE_MS = 1600;
         const STANDARD_GAP = 280;
         const CHIP_GAP = 70;
