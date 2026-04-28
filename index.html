@@ -297,12 +297,29 @@
     font-family: inherit;
   }
 
-  .field input::placeholder { color: #555; }
+  .field input::placeholder,
+  .field textarea::placeholder { color: #555; }
 
-  .field input:focus {
+  .field input:focus,
+  .field textarea:focus {
     border-color: rgba(255, 80, 180, 0.6);
     background: rgba(255, 255, 255, 0.06);
     box-shadow: 0 0 0 3px rgba(255, 80, 180, 0.15);
+  }
+
+  .field textarea {
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    font-size: 0.95rem;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 96px;
   }
 
   .submit {
@@ -391,6 +408,11 @@
         <div class="field">
           <label for="linkedin">LinkedIn profile</label>
           <input id="linkedin" name="linkedin" type="url" autocomplete="url" placeholder="https://linkedin.com/in/yourname" required>
+        </div>
+
+        <div class="field">
+          <label for="why">Why agentic?</label>
+          <textarea id="why" name="why" rows="4" placeholder="Tell us why you are agentic." required></textarea>
         </div>
 
         <button type="submit" class="submit">Submit</button>
