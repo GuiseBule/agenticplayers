@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <radialGradient id="sphere" cx="38%" cy="32%" r="65%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.55"/>
+      <stop offset="35%" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.55"/>
+    </radialGradient>
+    <clipPath id="ball">
+      <circle cx="32" cy="32" r="30"/>
+    </clipPath>
+  </defs>
+
+  <!-- Disco facet grid: 8x8 pattern of coloured tiles, clipped to the ball circle -->
+  <g clip-path="url(#ball)">
+    <!-- row 1 -->
+    <rect x="2" y="2"  width="7.75" height="7.5" fill="#ff2e88"/>
+    <rect x="9.75" y="2"  width="7.75" height="7.5" fill="#ffb800"/>
+    <rect x="17.5" y="2" width="7.75" height="7.5" fill="#ff5a3c"/>
+    <rect x="25.25" y="2" width="7.75" height="7.5" fill="#4d6dff"/>
+    <rect x="33" y="2" width="7.75" height="7.5" fill="#ff2e88"/>
+    <rect x="40.75" y="2" width="7.75" height="7.5" fill="#00bcd4"/>
+    <rect x="48.5" y="2" width="7.75" height="7.5" fill="#ffb800"/>
+    <rect x="56.25" y="2" width="7.75" height="7.5" fill="#ff5a3c"/>
+    <!-- row 2 -->
+    <rect x="2" y="9.5"  width="7.75" height="7.5" fill="#4d6dff"/>
+    <rect x="9.75" y="9.5"  width="7.75" height="7.5" fill="#ff5a3c"/>
+    <rect x="17.5" y="9.5" width="7.75" height="7.5" fill="#00bcd4"/>
+    <rect x="25.25" y="9.5" width="7.75" height="7.5" fill="#ffb800"/>
+    <rect x="33" y="9.5" width="7.75" height="7.5" fill="#ff5a3c"/>
+    <rect x="40.75" y="9.5" width="7.75" height="7.5" fill="#ff2e88"/>
+    <rect x="48.5" y="9.5" width="7.75" height="7.5" fill="#4d6dff"/>
+    <rect x="56.25" y="9.5" width="7.75" height="7.5" fill="#ffb800"/>
+    <!-- row 3 -->
+    <rect x="2" y="17"  width="7.75" height="7.5" fill="#ffb800"/>
+    <rect x="9.75" y="17"  width="7.75" height="7.5" fill="#ff2e88"/>
+    <rect x="17.5" y="17" width="7.75" height="7.5" fill="#ff5a3c"/>
+    <rect x="25.25" y="17" width="7.75" height="7.5" fill="#00bcd4"/>
+    <rect x="33" y="17" width="7.75" height="7.5" fill="#4d6dff"/>
+    <rect x="40.75" y="17" width="7.75" height="7.5" fill="#ffb800"/>
+    <rect x="48.5" y="17" width="7.75" height="7.5" fill="#ff2e88"/>
+    <rect x="56.25" y="17" width="7.75" height="7.5" fill="#ff5a3c"/>
+    <!-- row 4 -->
+    <rect x="2" y="24.5"  width="7.75" height="7.5" fill="#ff5a3c"/>
+    <rect x="9.75" y="24.5"  width="7.75" height="7.5" fill="#4d6dff"/>
+    <rect x="17.5" y="24.5" width="7.75" height="7.5" fill="#ffb800"/>
+    <rect x="25.25" y="24.5" width="7.75" height="7.5" fill="#ff2e88"/>
+    <rect x="33" y="24.5" width="7.75" height="7.5" fill="#00bcd4"/>
+    <rect x="40.75" y="24.5" width="7.75" height="7.5" fill="#ff5a3c"/>
+    <rect x="48.5" y="24.5" width="7.75" height="7.5" fill="#4d6dff"/>
+    <rect x="56.25" y="24.5" width="7.75" height="7.5" fill="#ff2e88"/>
+    <!-- row 5 -->
+    <rect x="2" y="32"  width="7.75" height="7.5" fill="#00bcd4"/>
+    <rect x="9.75" y="32"  width="7.75" height="7.5" fill="#ffb800"/>
+    <rect x="17.5" y="32" width="7.75" height="7.5" fill="#ff2e88"/>
+    <rect x="25.25" y="32" width="7.75" height="7.5" fill="#ff5a3c"/>
+    <rect x="33" y="32" width="7.75" height="7.5" fill="#4d6dff"/>
+    <rect x="40.75" y="32" width="7.75" height="7.5" fill="#00bcd4"/>
+    <rect x="48.5" y="32" width="7.75" height="7.5" fill="#ffb800"/>
+    <rect x="56.25" y="32" width="7.75" height="7.5" fill="#ff5a3c"/>
+    <!-- row 6 -->
+    <rect x="2" y="39.5"  width="7.75" height="7.5" fill="#ffb800"/>
+    <rect x="9.75" y="39.5"  width="7.75" height="7.5" fill="#ff5a3c"/>
+    <rect x="17.5" y="39.5" width="7.75" height="7.5" fill="#4d6dff"/>
+    <rect x="25.25" y="39.5" width="7.75" height="7.5" fill="#ffb800"/>
+    <rect x="33" y="39.5" width="7.75" height="7.5" fill="#ff2e88"/>
+    <rect x="40.75" y="39.5" width="7.75" height="7.5" fill="#ff5a3c"/>
+    <rect x="48.5" y="39.5" width="7.75" height="7.5" fill="#00bcd4"/>
+    <rect x="56.25" y="39.5" width="7.75" height="7.5" fill="#4d6dff"/>
+    <!-- row 7 -->
+    <rect x="2" y="47"  width="7.75" height="7.5" fill="#ff2e88"/>
+    <rect x="9.75" y="47"  width="7.75" height="7.5" fill="#00bcd4"/>
+    <rect x="17.5" y="47" width="7.75" height="7.5" fill="#ffb800"/>
+    <rect x="25.25" y="47" width="7.75" height="7.5" fill="#ff5a3c"/>
+    <rect x="33" y="47" width="7.75" height="7.5" fill="#ffb800"/>
+    <rect x="40.75" y="47" width="7.75" height="7.5" fill="#4d6dff"/>
+    <rect x="48.5" y="47" width="7.75" height="7.5" fill="#ff2e88"/>
+    <rect x="56.25" y="47" width="7.75" height="7.5" fill="#00bcd4"/>
+    <!-- row 8 -->
+    <rect x="2" y="54.5"  width="7.75" height="7.5" fill="#4d6dff"/>
+    <rect x="9.75" y="54.5"  width="7.75" height="7.5" fill="#ffb800"/>
+    <rect x="17.5" y="54.5" width="7.75" height="7.5" fill="#ff5a3c"/>
+    <rect x="25.25" y="54.5" width="7.75" height="7.5" fill="#ff2e88"/>
+    <rect x="33" y="54.5" width="7.75" height="7.5" fill="#00bcd4"/>
+    <rect x="40.75" y="54.5" width="7.75" height="7.5" fill="#ffb800"/>
+    <rect x="48.5" y="54.5" width="7.75" height="7.5" fill="#ff5a3c"/>
+    <rect x="56.25" y="54.5" width="7.75" height="7.5" fill="#4d6dff"/>
+
+    <!-- Spherical shading overlay -->
+    <circle cx="32" cy="32" r="30" fill="url(#sphere)"/>
+
+    <!-- Specular highlight -->
+    <ellipse cx="22" cy="20" rx="8" ry="5" fill="#fff" opacity="0.45"/>
+  </g>
+
+  <!-- Outer rim for definition at small sizes -->
+  <circle cx="32" cy="32" r="30" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/>
+</svg>

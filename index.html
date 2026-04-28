@@ -682,6 +682,19 @@
     .row { grid-template-columns: 1fr; }
   }
 
+  /* Mobile portrait: tighten vertical spacing so the hero sits at the top
+     and the intro follows naturally instead of floating in dead space */
+  @media (max-width: 700px) {
+    .hero {
+      min-height: 100svh;
+      justify-content: flex-start;
+      padding: 2rem 1.25rem 1rem;
+    }
+    .copy { margin-top: 1.5rem; }
+    .intro { padding: 1.5rem 1.25rem 1rem; }
+    .signup { padding-top: 1rem; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .ball, .ball-wrap, .glow, .stars, .sparkle, h1, .signup-card h2 { animation: none; }
     .socials a, .submit { transition: none; }
