@@ -359,6 +359,45 @@
     min-height: 96px;
   }
 
+  /* Relationship chips */
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 0.85rem;
+    font-size: 0.85rem;
+    color: #ccc;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .chip:hover { border-color: rgba(255, 255, 255, 0.25); }
+
+  .chip input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .chip:has(input:checked) {
+    color: #fff;
+    border-color: rgba(255, 80, 180, 0.6);
+    background: rgba(255, 80, 180, 0.12);
+  }
+
+  .chip:focus-within {
+    box-shadow: 0 0 0 3px rgba(255, 80, 180, 0.2);
+  }
+
   /* Referral toggle */
   .referral-check { position: absolute; opacity: 0; pointer-events: none; }
 
@@ -486,7 +525,7 @@
 
   <section class="intro">
     <div class="intro-inner">
-      <p>A nonprofit social circle for the operators, founders, and builders <span class="accent">shaping the agentic era</span>. We talk, we meet, and we play.</p>
+      <p>A private social circle for the founders, builders, and researchers <span class="accent">shaping the agentic era</span>. We talk, we meet, and we play.</p>
     </div>
   </section>
 
@@ -513,23 +552,27 @@
         </div>
 
         <div class="field">
-          <label for="phone">Phone</label>
-          <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+1 555 123 4567" required>
-        </div>
-
-        <div class="field">
           <label for="linkedin">LinkedIn profile</label>
           <input id="linkedin" name="linkedin" type="url" autocomplete="url" placeholder="https://linkedin.com/in/yourname" required>
         </div>
 
         <div class="field">
-          <label for="github">GitHub URL</label>
-          <input id="github" name="github" type="url" autocomplete="url" placeholder="https://github.com/yourname" required>
+          <label for="github">GitHub URL <span style="opacity:0.5; font-weight:400;">(optional)</span></label>
+          <input id="github" name="github" type="url" autocomplete="url" placeholder="https://github.com/yourname">
+        </div>
+
+        <div class="field">
+          <label>Which are you?</label>
+          <div class="chips" role="group" aria-label="Identity" style="margin-top: 0.6rem;">
+            <label class="chip"><input type="checkbox" name="identity" value="Founder"> Founder</label>
+            <label class="chip"><input type="checkbox" name="identity" value="Builder"> Builder</label>
+            <label class="chip"><input type="checkbox" name="identity" value="Researcher"> Researcher</label>
+          </div>
         </div>
 
         <div class="field">
           <label for="why">Why are you agentic?</label>
-          <textarea id="why" name="why" rows="4" placeholder="Tell us why you consider yourself to be elite." required></textarea>
+          <textarea id="why" name="why" rows="4" placeholder="Tell us what you have founded, built, or researched." required></textarea>
         </div>
 
         <input type="checkbox" id="referred" name="referred" class="referral-check">
@@ -544,10 +587,6 @@
             <input id="referrerLinkedin" name="referrerLinkedin" type="url" autocomplete="off" placeholder="https://linkedin.com/in/theirname">
           </div>
 
-          <div class="field">
-            <label for="referrerRelationship">What is your relationship with them?</label>
-            <textarea id="referrerRelationship" name="referrerRelationship" rows="3" placeholder="How do you know them?"></textarea>
-          </div>
         </div>
 
         <button type="submit" class="submit">Submit</button>
