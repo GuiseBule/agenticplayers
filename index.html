@@ -359,6 +359,68 @@
     min-height: 96px;
   }
 
+  /* Referral toggle */
+  .referral-check { position: absolute; opacity: 0; pointer-events: none; }
+
+  .referral-row {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin: 1.5rem 0 0;
+    cursor: pointer;
+    user-select: none;
+    color: #ccc;
+    font-size: 0.95rem;
+  }
+
+  .referral-row .box {
+    width: 18px;
+    height: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.04);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .referral-row .box::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    background: linear-gradient(135deg, #ff3d77, #b04dff);
+    transform: scale(0);
+    transition: transform 0.15s ease;
+  }
+
+  .referral-check:checked + .referral-row .box {
+    border-color: rgba(255, 80, 180, 0.6);
+    background: rgba(255, 80, 180, 0.06);
+  }
+
+  .referral-check:checked + .referral-row .box::after { transform: scale(1); }
+
+  .referral-check:focus-visible + .referral-row .box {
+    box-shadow: 0 0 0 3px rgba(255, 80, 180, 0.25);
+  }
+
+  .referral-fields {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
+    margin-top: 0;
+  }
+
+  .referral-check:checked ~ .referral-fields {
+    max-height: 800px;
+    opacity: 1;
+    margin-top: 1rem;
+  }
+
   .submit {
     width: 100%;
     margin-top: 0.75rem;
@@ -466,6 +528,29 @@
         <div class="field">
           <label for="why">Why are you agentic?</label>
           <textarea id="why" name="why" rows="4" placeholder="Tell us why you consider yourself to be elite." required></textarea>
+        </div>
+
+        <input type="checkbox" id="referred" name="referred" class="referral-check">
+        <label for="referred" class="referral-row">
+          <span class="box"></span>
+          <span>Have you been referred?</span>
+        </label>
+
+        <div class="referral-fields" aria-hidden="true">
+          <div class="field">
+            <label for="referrerName">Who can vouch for you</label>
+            <input id="referrerName" name="referrerName" type="text" autocomplete="off">
+          </div>
+
+          <div class="field">
+            <label for="referrerLinkedin">Their LinkedIn profile</label>
+            <input id="referrerLinkedin" name="referrerLinkedin" type="url" autocomplete="off" placeholder="https://linkedin.com/in/theirname">
+          </div>
+
+          <div class="field">
+            <label for="referrerRelationship">What is your relationship with them?</label>
+            <textarea id="referrerRelationship" name="referrerRelationship" rows="3" placeholder="How do you know them?"></textarea>
+          </div>
         </div>
 
         <button type="submit" class="submit">Submit</button>
