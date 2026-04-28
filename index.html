@@ -540,7 +540,7 @@
   </section>
 
   <section class="signup">
-    <div class="signup-card">
+    <div class="signup-card" id="signup-card">
       <h2>Request An Invite</h2>
       <p class="lead">Tell us who you are, we might be in touch.</p>
 
@@ -663,7 +663,8 @@
           if (!res.ok) {
             throw new Error(data.error || "Submission failed");
           }
-          form.innerHTML = '<div class="form-status success" style="font-size:1.05rem; line-height:1.6;"><p style="margin:0 0 1rem;">Thank you for applying to The Agentic Players Ball.</p><p style="margin:0; color:#aaa;">We are a private circle for founders, builders, and researchers shaping the agentic era. Every application is reviewed personally. If your work does not align with our membership, we may decline. Either way, you will hear from us.</p></div>';
+          const card = document.getElementById("signup-card");
+          card.innerHTML = '<div class="form-status success" style="font-size:1.05rem; line-height:1.6; text-align:center;"><h2 style="margin:0 0 1.25rem; font-size:1.4rem; color:#fff;">Thank you for applying.</h2><p style="margin:0 0 1rem; color:#ddd;">The Agentic Players Ball is a private circle for founders, builders, and researchers shaping the agentic era.</p><p style="margin:0; color:#aaa;">Every application is reviewed personally. If your work does not align with our membership, we may decline. Either way, you will hear from us.</p></div>';
         } catch (err) {
           status.className = "form-status error";
           status.textContent = err.message || "Something went wrong. Try again.";
