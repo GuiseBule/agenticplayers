@@ -676,6 +676,34 @@
   .signup-card:has(.signup-success) {
     max-width: 680px;
   }
+
+  /* Blue shimmer that sweeps down the form on first scroll-in */
+  .signup-card { position: relative; overflow: hidden; border-radius: 16px; }
+  .signup-card::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 60%;
+    background: linear-gradient(180deg,
+      transparent 0%,
+      rgba(77, 109, 255, 0.0) 20%,
+      rgba(77, 109, 255, 0.18) 50%,
+      rgba(0, 188, 212, 0.18) 65%,
+      rgba(77, 109, 255, 0.0) 80%,
+      transparent 100%);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  .signup-card.shimmer::after {
+    animation: shimmerDown 1.6s cubic-bezier(0.22, 0.61, 0.36, 1) 0.25s forwards;
+  }
+  @keyframes shimmerDown {
+    0%   { opacity: 0; transform: translateY(-100%); }
+    20%  { opacity: 1; }
+    80%  { opacity: 1; }
+    100% { opacity: 0; transform: translateY(220%); }
+  }
   .signup-success {
     text-align: center;
     max-width: 640px;
@@ -845,6 +873,20 @@
       const form = document.getElementById("signup-form");
       const status = document.getElementById("form-status");
       if (!form) return;
+
+      // Blue shimmer sweep — fires once when the form first enters the viewport
+      const card = document.getElementById("signup-card");
+      if (card && "IntersectionObserver" in window) {
+        const obs = new IntersectionObserver((entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              card.classList.add("shimmer");
+              obs.disconnect();
+            }
+          }
+        }, { threshold: 0.25 });
+        obs.observe(card);
+      }
 
       const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       const linkedinRe = /^(https?:\/\/)?([a-z0-9-]+\.)?linkedin\.com\/(in|company|pub)\/[A-Za-z0-9_\-%.]+\/?/i;
