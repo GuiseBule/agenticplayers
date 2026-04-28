@@ -12,6 +12,14 @@
 <meta name="theme-color" content="#000000">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://agenticplayersball.com/">
+<link rel="alternate" hreflang="en"      href="https://agenticplayersball.com/?lang=en">
+<link rel="alternate" hreflang="de"      href="https://agenticplayersball.com/?lang=de">
+<link rel="alternate" hreflang="fr"      href="https://agenticplayersball.com/?lang=fr">
+<link rel="alternate" hreflang="es"      href="https://agenticplayersball.com/?lang=es">
+<link rel="alternate" hreflang="pt-BR"   href="https://agenticplayersball.com/?lang=pt">
+<link rel="alternate" hreflang="zh-Hans" href="https://agenticplayersball.com/?lang=zh">
+<link rel="alternate" hreflang="ja"      href="https://agenticplayersball.com/?lang=ja">
+<link rel="alternate" hreflang="x-default" href="https://agenticplayersball.com/">
 
 <!-- Favicons -->
 <link rel="icon" href="/favicon.ico?v=3" sizes="any">
@@ -742,7 +750,215 @@
     .ball, .ball-wrap, .glow, .stars, .sparkle, h1, .signup-card h2 { animation: none; }
     .socials a, .submit { transition: none; }
   }
+
+  /* ── Language-specific overrides ── */
+
+  /* CJK: uppercase + wide letter-spacing look wrong on Chinese/Japanese characters
+     (scoped to direct .field > label so chip labels are not affected) */
+  html.lang-zh .field > label,
+  html.lang-ja .field > label {
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  /* German tagline is longer — let it wrap instead of overflowing */
+  html.lang-de .tagline { white-space: normal; text-wrap: balance; }
+
+  /* CJK font stacks */
+  html.lang-zh body {
+    font-family: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  }
+  html.lang-ja body {
+    font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+  }
+
+  /* ── Language switcher ── */
+  .lang-switcher {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.2rem 0.4rem;
+    margin-top: 0.75rem;
+  }
+  .lang-switcher button {
+    background: none;
+    border: none;
+    color: #444;
+    font-size: 0.7rem;
+    font-family: inherit;
+    cursor: pointer;
+    padding: 0.15rem 0.3rem;
+    border-radius: 3px;
+    transition: color 0.2s ease;
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+  .lang-switcher button:hover { color: #999; }
+  .lang-switcher button.active { color: #888; }
+  .lang-switcher .sep {
+    color: #2a2a2a;
+    font-size: 0.7rem;
+    line-height: 1;
+    align-self: center;
+    pointer-events: none;
+    user-select: none;
+  }
 </style>
+<script>
+(function () {
+  var SUPPORTED = ['en','de','fr','es','pt','zh','ja'];
+
+  function detectLang() {
+    var p = new URLSearchParams(location.search).get('lang');
+    if (p) p = p.toLowerCase();
+    if (p && SUPPORTED.indexOf(p) !== -1) return p;
+    try { var s = localStorage.getItem('apb-lang'); if (s && SUPPORTED.indexOf(s) !== -1) return s; } catch(e){}
+    var n = (navigator.language || 'en').toLowerCase();
+    if (n.startsWith('zh')) return 'zh';
+    if (n.startsWith('ja')) return 'ja';
+    if (n.startsWith('de')) return 'de';
+    if (n.startsWith('fr')) return 'fr';
+    if (n.startsWith('es')) return 'es';
+    if (n.startsWith('pt')) return 'pt';
+    return 'en';
+  }
+
+  var lang = detectLang();
+  try { localStorage.setItem('apb-lang', lang); } catch(e){}
+  document.documentElement.lang = lang;
+  document.documentElement.classList.add('lang-' + lang);
+
+  /* onI18nReady infrastructure — resolves before or after DOMContentLoaded */
+  window.__i18nLang = lang;
+  window.__i18nData = null;
+  window.__i18nReady = false;
+  window.__i18nQueue = [];
+  window.onI18nReady = function(fn) {
+    if (window.__i18nReady) fn(); else window.__i18nQueue.push(fn);
+  };
+  window.__fireI18nReady = function() {
+    window.__i18nReady = true;
+    window.__i18nQueue.forEach(function(fn){ fn(); });
+    window.__i18nQueue = [];
+  };
+
+  var EN = {
+    "meta.title": "The Agentic Players Ball — A private circle for the agentic era",
+    "meta.description": "A private circle for the founders, builders, and researchers shaping the agentic era. We talk, we meet, and we play. Apply for membership.",
+    "meta.og_description": "A private circle for the founders, builders, and researchers shaping the agentic era.",
+    "meta.og_locale": "en_GB",
+    "hero.tagline": "A playground for the agentic elite.",
+    "hero.mascot_name": "* He is called Sparkles.",
+    "intro.sentence1": "A private circle for the founders, builders, and researchers <span class=\"accent\">shaping the agentic era</span>.",
+    "intro.phrase": "We talk, we meet, and we play.",
+    "intro.detail": "We bring together the people quietly building the next decade of agentic AI. Founders shipping autonomous products, engineers building agent infrastructure, and researchers pushing the frontier. There is no membership fee. Existing members decide who fits.",
+    "form.heading": "Request An Invite",
+    "form.lead": "Tell us who you are, we will be in touch.",
+    "form.first_name": "First name",
+    "form.last_name": "Last name",
+    "form.email": "Email",
+    "form.linkedin": "LinkedIn profile",
+    "form.github": "GitHub URL",
+    "form.github_optional": "(optional)",
+    "form.telegram": "Telegram Handle",
+    "form.identity_label": "Which are you?",
+    "form.identity_aria": "Identity",
+    "form.why_label": "Why are you agentic?",
+    "form.why_placeholder": "Tell us what you have founded, built, or researched.",
+    "form.referred_label": "Have you been referred by anyone?",
+    "form.voucher_label": "Who can vouch for you",
+    "form.voucher_placeholder": "linkedin.com/in/theirname",
+    "form.submit": "Submit",
+    "form.submitting": "Submitting…",
+    "form.error.first_name_required": "First name is required",
+    "form.error.last_name_required": "Last name is required",
+    "form.error.email_required": "Email is required",
+    "form.error.email_invalid": "That doesn’t look like a valid email",
+    "form.error.linkedin_required": "LinkedIn URL is required",
+    "form.error.linkedin_invalid": "Must be a LinkedIn profile URL (linkedin.com/in/yourname)",
+    "form.error.github_invalid": "Must be a GitHub profile URL (github.com/yourname)",
+    "form.error.telegram_required": "Telegram handle is required",
+    "form.error.telegram_invalid": "Use a public username, e.g. @yourhandle",
+    "form.error.why_required": "Tell us what you have built or researched",
+    "form.error.identity_required": "Pick at least one",
+    "form.error.voucher_required": "Add the LinkedIn URL of who referred you",
+    "form.error.voucher_invalid": "Must be a LinkedIn profile URL (linkedin.com/in/theirname)",
+    "form.error.generic": "Something went wrong. Try again.",
+    "success.heading": "Thank you for applying.",
+    "success.body1": "The Agentic Players Ball is a private circle for founders, builders, and researchers shaping the agentic era. Every application is reviewed by our members. If your work does not align with our membership, we may decline.",
+    "success.body2": "Either way, you will hear from us.",
+    "footer.copyright": "© 2026 The Agentic Players Ball. All rights reserved."
+  };
+
+  function applyMeta(data) {
+    var t = document.querySelector('title');
+    if (t && data['meta.title']) t.textContent = data['meta.title'];
+    var md = document.querySelector('meta[name="description"]');
+    if (md && data['meta.description']) md.setAttribute('content', data['meta.description']);
+    var ogd = document.querySelector('meta[property="og:description"]');
+    if (ogd && data['meta.og_description']) ogd.setAttribute('content', data['meta.og_description']);
+    var ogl = document.querySelector('meta[property="og:locale"]');
+    if (ogl && data['meta.og_locale']) ogl.setAttribute('content', data['meta.og_locale']);
+  }
+
+  function applyBody(data) {
+    /* plain text nodes */
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var v = data[el.dataset.i18n];
+      if (v !== undefined) el.textContent = v;
+    });
+    /* innerHTML — used where sentence structure varies (intro sentence1) */
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+      var v = data[el.dataset.i18nHtml];
+      if (v !== undefined) el.innerHTML = v;
+    });
+    /* placeholder attributes */
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+      var v = data[el.dataset.i18nPlaceholder];
+      if (v !== undefined) el.placeholder = v;
+    });
+    /* aria-label attributes */
+    document.querySelectorAll('[data-i18n-aria]').forEach(function(el) {
+      var v = data[el.dataset.i18nAria];
+      if (v !== undefined) el.setAttribute('aria-label', v);
+    });
+    /* phrase span — update dataset.text + aria-label before animation init */
+    var phrase = document.querySelector('.phrase');
+    if (phrase && data['intro.phrase']) {
+      phrase.dataset.text = data['intro.phrase'];
+      phrase.setAttribute('aria-label', data['intro.phrase']);
+      if (!phrase.querySelector('.word')) phrase.textContent = data['intro.phrase'];
+    }
+    /* language switcher — mark active button */
+    document.querySelectorAll('.lang-btn').forEach(function(btn) {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+  }
+
+  function applyTranslations(data) {
+    window.__i18nData = data;
+    applyMeta(data);
+    applyBody(data);
+    window.__fireI18nReady();
+  }
+
+  /* Apply meta immediately (elements exist in head at this point) */
+  if (lang === 'en') {
+    applyMeta(EN);
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (lang === 'en') {
+      applyTranslations(EN);
+    } else {
+      fetch('/i18n/' + lang + '.json')
+        .then(function(r) { return r.json(); })
+        .then(applyTranslations)
+        .catch(function() { applyTranslations(EN); });
+    }
+  });
+})();
+</script>
 </head>
 <body>
   <div class="stars"></div>
@@ -765,64 +981,64 @@
 
     <div class="copy">
       <h1>The Agentic Players Ball</h1>
-      <p class="tagline">A playground for the agentic elite.</p>
-      <p class="mascot-name">* He is called Sparkles.</p>
+      <p class="tagline" data-i18n="hero.tagline">A playground for the agentic elite.</p>
+      <p class="mascot-name" data-i18n="hero.mascot_name">* He is called Sparkles.</p>
     </div>
   </section>
 
   <section class="intro">
     <div class="intro-inner">
-      <p>A private circle for the founders, builders, and researchers <span class="accent">shaping the agentic era</span>. <span class="phrase" data-text="We talk, we meet, and we play." aria-label="We talk, we meet, and we play.">We talk, we meet, and we play.</span></p>
-      <p class="intro-detail">We bring together the people quietly building the next decade of agentic AI. Founders shipping autonomous products, engineers building agent infrastructure, and researchers pushing the frontier. There is no membership fee. Existing members decide who fits.</p>
+      <p><span data-i18n-html="intro.sentence1">A private circle for the founders, builders, and researchers <span class="accent">shaping the agentic era</span>.</span> <span class="phrase" data-text="We talk, we meet, and we play." aria-label="We talk, we meet, and we play.">We talk, we meet, and we play.</span></p>
+      <p class="intro-detail" data-i18n="intro.detail">We bring together the people quietly building the next decade of agentic AI. Founders shipping autonomous products, engineers building agent infrastructure, and researchers pushing the frontier. There is no membership fee. Existing members decide who fits.</p>
     </div>
   </section>
 
   <section class="signup">
     <div class="signup-card" id="signup-card">
-      <h2>Request An Invite</h2>
-      <p class="lead">Tell us who you are, we will be in touch.</p>
+      <h2 data-i18n="form.heading">Request An Invite</h2>
+      <p class="lead" data-i18n="form.lead">Tell us who you are, we will be in touch.</p>
 
       <form id="signup-form" autocomplete="on" novalidate>
         <div class="row">
           <div class="field">
-            <label for="firstName">First name</label>
+            <label for="firstName" data-i18n="form.first_name">First name</label>
             <input id="firstName" name="firstName" type="text" autocomplete="given-name" autocapitalize="words" class="capitalize" required>
             <small class="field-error"></small>
           </div>
           <div class="field">
-            <label for="lastName">Last name</label>
+            <label for="lastName" data-i18n="form.last_name">Last name</label>
             <input id="lastName" name="lastName" type="text" autocomplete="family-name" autocapitalize="words" class="capitalize" required>
             <small class="field-error"></small>
           </div>
         </div>
 
         <div class="field">
-          <label for="email">Email</label>
+          <label for="email" data-i18n="form.email">Email</label>
           <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
           <small class="field-error"></small>
         </div>
 
         <div class="field">
-          <label for="linkedin">LinkedIn profile</label>
+          <label for="linkedin" data-i18n="form.linkedin">LinkedIn profile</label>
           <input id="linkedin" name="linkedin" type="url" autocomplete="url" placeholder="https://linkedin.com/in/yourname" required>
           <small class="field-error"></small>
         </div>
 
         <div class="field">
-          <label for="github">GitHub URL <span style="opacity:0.5; font-weight:400;">(optional)</span></label>
+          <label for="github"><span data-i18n="form.github">GitHub URL</span> <span data-i18n="form.github_optional" style="opacity:0.5; font-weight:400;">(optional)</span></label>
           <input id="github" name="github" type="url" autocomplete="url" placeholder="https://github.com/yourname">
           <small class="field-error"></small>
         </div>
 
         <div class="field">
-          <label for="telegram">Telegram Handle</label>
+          <label for="telegram" data-i18n="form.telegram">Telegram Handle</label>
           <input id="telegram" name="telegram" type="text" autocomplete="off" placeholder="@yourhandle" required>
           <small class="field-error"></small>
         </div>
 
         <div class="field">
-          <label>Which are you?</label>
-          <div class="chips" role="group" aria-label="Identity" style="margin-top: 0.6rem;">
+          <label data-i18n="form.identity_label">Which are you?</label>
+          <div class="chips" role="group" aria-label="Identity" data-i18n-aria="form.identity_aria" style="margin-top: 0.6rem;">
             <label class="chip"><input type="checkbox" name="identity" value="Founder"> Founder</label>
             <label class="chip"><input type="checkbox" name="identity" value="Builder"> Builder</label>
             <label class="chip"><input type="checkbox" name="identity" value="Researcher"> Researcher</label>
@@ -831,27 +1047,27 @@
         </div>
 
         <div class="field">
-          <label for="why">Why are you agentic?</label>
-          <textarea id="why" name="why" rows="4" placeholder="Tell us what you have founded, built, or researched." required></textarea>
+          <label for="why" data-i18n="form.why_label">Why are you agentic?</label>
+          <textarea id="why" name="why" rows="4" placeholder="Tell us what you have founded, built, or researched." data-i18n-placeholder="form.why_placeholder" required></textarea>
           <small class="field-error"></small>
         </div>
 
         <input type="checkbox" id="referred" name="referred" class="referral-check">
         <label for="referred" class="referral-row">
           <span class="box"></span>
-          <span>Have you been referred by anyone?</span>
+          <span data-i18n="form.referred_label">Have you been referred by anyone?</span>
         </label>
 
         <div class="referral-fields" aria-hidden="true">
           <div class="field">
-            <label for="referrerLinkedin">Who can vouch for you</label>
-            <input id="referrerLinkedin" name="referrerLinkedin" type="text" autocomplete="off" placeholder="linkedin.com/in/theirname">
+            <label for="referrerLinkedin" data-i18n="form.voucher_label">Who can vouch for you</label>
+            <input id="referrerLinkedin" name="referrerLinkedin" type="text" autocomplete="off" placeholder="linkedin.com/in/theirname" data-i18n-placeholder="form.voucher_placeholder">
             <small class="field-error"></small>
           </div>
 
         </div>
 
-        <button type="submit" class="submit">Submit</button>
+        <button type="submit" class="submit" data-i18n="form.submit">Submit</button>
         <div id="form-status" class="form-status" aria-live="polite"></div>
       </form>
     </div>
@@ -872,12 +1088,27 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.94 4.31a1.5 1.5 0 0 0-1.55-.27L3.4 10.62a1.18 1.18 0 0 0 .07 2.22l3.86 1.27 1.5 4.78a1.07 1.07 0 0 0 1.74.48l2.34-2.06 4.13 3.05a1.18 1.18 0 0 0 1.86-.71l3.16-13.66a1.5 1.5 0 0 0-.12-1.68zM10 14.4l-.5 3.55-1.08-3.49 8.4-7.42L10 14.4z"/></svg>
       </a>
     </nav>
-    <div class="footer-mark">&copy; 2026 The Agentic Players Ball. All rights reserved.</div>
+    <nav class="lang-switcher" aria-label="Language">
+      <button class="lang-btn" data-lang="en">EN</button>
+      <span class="sep">|</span>
+      <button class="lang-btn" data-lang="de">DE</button>
+      <span class="sep">|</span>
+      <button class="lang-btn" data-lang="zh">中文</button>
+      <span class="sep">|</span>
+      <button class="lang-btn" data-lang="fr">FR</button>
+      <span class="sep">|</span>
+      <button class="lang-btn" data-lang="es">ES</button>
+      <span class="sep">|</span>
+      <button class="lang-btn" data-lang="ja">日本語</button>
+      <span class="sep">|</span>
+      <button class="lang-btn" data-lang="pt">PT</button>
+    </nav>
+    <div class="footer-mark" data-i18n="footer.copyright">© 2026 The Agentic Players Ball. All rights reserved.</div>
   </footer>
 
   <script>
-    // "We talk, we meet, and we play." — letters bounce in, "play" pops, loops every 15s
-    (function () {
+    // Phrase animation — waits for i18nReady so translated text is in dataset.text before splitting
+    window.onI18nReady(function () {
       const phrase = document.querySelector(".phrase");
       if (!phrase) return;
       const text = phrase.dataset.text || phrase.textContent;
@@ -927,7 +1158,7 @@
         bounceIn();
         setInterval(wave, 10000);
       }
-    })();
+    });
 
     // Organic starfield generator — each star twinkles on its own clock
     (function () {
@@ -961,6 +1192,10 @@
       const form = document.getElementById("signup-form");
       const status = document.getElementById("form-status");
       if (!form) return;
+
+      function t(key, fallback) {
+        return (window.__i18nData && window.__i18nData[key]) || fallback;
+      }
 
       // Blue ring cascade — loops with a 3.5s pause until the user interacts with the form
       const card = document.getElementById("signup-card");
@@ -1012,15 +1247,18 @@
       const githubRe = /^(https?:\/\/)?(www\.)?github\.com\/[A-Za-z0-9_\-]+\/?/i;
       const tgRe = /^@?[A-Za-z0-9_]{4,32}$|^https?:\/\/(t\.me|telegram\.me)\/[A-Za-z0-9_]{4,32}\/?$/i;
 
-      const rules = {
-        firstName: { required: true, msg: "First name is required" },
-        lastName:  { required: true, msg: "Last name is required" },
-        email:     { required: true, msg: "Email is required", test: v => emailRe.test(v), bad: "That doesn't look like a valid email" },
-        linkedin:  { required: true, msg: "LinkedIn URL is required", test: v => linkedinRe.test(v), bad: "Must be a LinkedIn profile URL (linkedin.com/in/yourname)" },
-        github:    { required: false, test: v => !v || githubRe.test(v), bad: "Must be a GitHub profile URL (github.com/yourname)" },
-        telegram:  { required: true, msg: "Telegram handle is required", test: v => tgRe.test(v), bad: "Use a public username, e.g. @yourhandle" },
-        why:       { required: true, msg: "Tell us what you have built or researched" },
-      };
+      function getRules() {
+        return {
+          firstName: { required: true, msg: t('form.error.first_name_required', 'First name is required') },
+          lastName:  { required: true, msg: t('form.error.last_name_required', 'Last name is required') },
+          email:     { required: true, msg: t('form.error.email_required', 'Email is required'), test: v => emailRe.test(v), bad: t('form.error.email_invalid', 'That doesn’t look like a valid email') },
+          linkedin:  { required: true, msg: t('form.error.linkedin_required', 'LinkedIn URL is required'), test: v => linkedinRe.test(v), bad: t('form.error.linkedin_invalid', 'Must be a LinkedIn profile URL (linkedin.com/in/yourname)') },
+          github:    { required: false, test: v => !v || githubRe.test(v), bad: t('form.error.github_invalid', 'Must be a GitHub profile URL (github.com/yourname)') },
+          telegram:  { required: true, msg: t('form.error.telegram_required', 'Telegram handle is required'), test: v => tgRe.test(v), bad: t('form.error.telegram_invalid', 'Use a public username, e.g. @yourhandle') },
+          why:       { required: true, msg: t('form.error.why_required', 'Tell us what you have built or researched') },
+        };
+      }
+      const FIELD_NAMES = ['firstName', 'lastName', 'email', 'linkedin', 'github', 'telegram', 'why'];
 
       function fieldOf(name) {
         const el = form.elements[name];
@@ -1041,7 +1279,7 @@
         if (slot) slot.textContent = "";
       }
       function validateField(name) {
-        const rule = rules[name];
+        const rule = getRules()[name];
         if (!rule) return true;
         const el = form.elements[name];
         const v = (el?.value || "").trim();
@@ -1063,12 +1301,12 @@
         }
         if (!v) {
           wrap.classList.add("is-invalid");
-          if (slot) slot.textContent = "Add the LinkedIn URL of who referred you";
+          if (slot) slot.textContent = t('form.error.voucher_required', 'Add the LinkedIn URL of who referred you');
           return false;
         }
         if (!linkedinRe.test(v)) {
           wrap.classList.add("is-invalid");
-          if (slot) slot.textContent = "Must be a LinkedIn profile URL (linkedin.com/in/theirname)";
+          if (slot) slot.textContent = t('form.error.voucher_invalid', 'Must be a LinkedIn profile URL (linkedin.com/in/theirname)');
           return false;
         }
         wrap.classList.remove("is-invalid");
@@ -1082,7 +1320,7 @@
         const slot = wrap.querySelector(".field-error");
         if (checked === 0) {
           wrap.classList.add("is-invalid");
-          if (slot) slot.textContent = "Pick at least one";
+          if (slot) slot.textContent = t('form.error.identity_required', 'Pick at least one');
           return false;
         }
         wrap.classList.remove("is-invalid");
@@ -1091,7 +1329,7 @@
       }
 
       // Touch-on-blur: validate when user leaves a field
-      Object.keys(rules).forEach(name => {
+      FIELD_NAMES.forEach(name => {
         const el = form.elements[name];
         if (!el) return;
         el.addEventListener("blur", () => validateField(name));
@@ -1114,13 +1352,24 @@
         });
       }
 
+      // Language switcher
+      document.querySelectorAll('.lang-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var l = this.dataset.lang;
+          try { localStorage.setItem('apb-lang', l); } catch(e){}
+          var url = new URL(location.href);
+          url.searchParams.set('lang', l);
+          location.href = url.toString();
+        });
+      });
+
       form.addEventListener("submit", async function (e) {
         e.preventDefault();
         status.className = "form-status";
         status.textContent = "";
 
         // Validate everything; show all errors at once
-        const checks = Object.keys(rules).map(validateField);
+        const checks = FIELD_NAMES.map(validateField);
         checks.push(validateIdentity());
         checks.push(validateReferrer());
         if (checks.some(ok => !ok)) {
@@ -1133,7 +1382,7 @@
         const submitBtn = form.querySelector(".submit");
         submitBtn.disabled = true;
         const originalText = submitBtn.textContent;
-        submitBtn.textContent = "Submitting...";
+        submitBtn.textContent = t('form.submitting', 'Submitting…');
 
         const fd = new FormData(form);
         const identity = Array.from(form.querySelectorAll('input[name="identity"]:checked')).map(i => i.value);
@@ -1160,10 +1409,10 @@
           const data = await res.json().catch(() => ({}));
           if (!res.ok) throw new Error(data.error || "Submission failed");
           const card = document.getElementById("signup-card");
-          card.innerHTML = '<div class="signup-success"><h2>Thank you for applying.</h2><p>The Agentic Players Ball is a private circle for founders, builders, and researchers shaping the agentic era. Every application is reviewed by our members. If your work does not align with our membership, we may decline.</p><p>Either way, you will hear from us.</p></div>';
+          card.innerHTML = '<div class="signup-success"><h2>' + t('success.heading', 'Thank you for applying.') + '</h2><p>' + t('success.body1', 'The Agentic Players Ball is a private circle for founders, builders, and researchers shaping the agentic era. Every application is reviewed by our members. If your work does not align with our membership, we may decline.') + '</p><p>' + t('success.body2', 'Either way, you will hear from us.') + '</p></div>';
         } catch (err) {
           status.className = "form-status error";
-          status.textContent = err.message || "Something went wrong. Try again.";
+          status.textContent = err.message || t('form.error.generic', 'Something went wrong. Try again.');
           submitBtn.disabled = false;
           submitBtn.textContent = originalText;
         }
