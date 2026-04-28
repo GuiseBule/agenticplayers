@@ -1352,14 +1352,12 @@
         });
       }
 
-      // Language switcher
+      // Language switcher — navigate to clean URL (/de/, /fr/, etc., or / for EN)
       document.querySelectorAll('.lang-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
           var l = this.dataset.lang;
           try { localStorage.setItem('apb-lang', l); } catch(e){}
-          var url = new URL(location.href);
-          url.searchParams.set('lang', l);
-          location.href = url.toString();
+          location.href = (l === 'en') ? '/' : '/' + l + '/';
         });
       });
 

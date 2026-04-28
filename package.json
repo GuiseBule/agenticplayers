@@ -1,0 +1,12 @@
+{
+  "name": "agenticplayersball",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The Agentic Players Ball — static multi-language site",
+  "scripts": {
+    "build": "node build-i18n.js"
+  },
+  "devDependencies": {
+    "cheerio": "^1.0.0"
+  }
+}
