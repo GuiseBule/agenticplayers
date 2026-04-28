@@ -205,23 +205,26 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
-    color: #666;
-    transition: color 0.25s ease, transform 0.25s ease;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #999;
+    transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
   }
 
-  .socials a:hover { transform: translateY(-2px); }
-  .socials a svg { width: 17px; height: 17px; fill: currentColor; display: block; }
-  .socials a.x svg  { transform: scale(1.23); transform-origin: center; }
-  .socials a.yt svg { transform: scale(1.41); transform-origin: center; }
-  .socials a.em svg { transform: scale(1.5);  transform-origin: center; }
+  .socials a:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  .socials a svg { width: 15px; height: 15px; fill: currentColor; display: block; }
 
   .socials a.x:hover  { color: #fff; }
-  .socials a.fb:hover { color: #1d3a73; }
-  .socials a.yt:hover { color: #FF0000; }
-  .socials a.gh:hover { color: #fff; }
-  .socials a.em:hover { color: #ff3d77; }
+  .socials a.fb:hover { color: #4dc3ff; }
+  .socials a.yt:hover { color: #ff5a3c; }
+  .socials a.em:hover { color: #ffb800; }
 
   .footer-mark {
     margin-top: 0.85rem;
@@ -245,16 +248,26 @@
   }
 
   .intro p {
-    font-size: clamp(1.15rem, 2.8vmin, 1.5rem);
+    font-size: clamp(1.4rem, 3.4vmin, 1.85rem);
     font-weight: 500;
-    line-height: 1.55;
-    letter-spacing: -0.005em;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
     color: #ececec;
     margin-bottom: 1rem;
     text-wrap: balance;
   }
 
   .intro p:last-child { margin-bottom: 0; }
+
+  .intro p.intro-detail {
+    font-size: clamp(0.9rem, 1.7vmin, 1rem);
+    font-weight: 400;
+    line-height: 1.7;
+    color: #aaa;
+    max-width: 800px;
+    margin: 1.5rem auto 0;
+    text-wrap: balance;
+  }
 
   .intro .accent {
     background: linear-gradient(90deg, #ff2e88, #ff5a3c, #ffb800, #00bcd4, #4d6dff, #ff2e88);
@@ -566,6 +579,7 @@
   <section class="intro">
     <div class="intro-inner">
       <p>A private circle for the founders, builders, and researchers <span class="accent">shaping the agentic era</span>. We talk, we meet, and we play.</p>
+      <p class="intro-detail">We bring together the people quietly building the next decade of agentic AI. Founders shipping autonomous products, engineers building agent infrastructure, and researchers pushing the frontier. Membership is by application and reviewed by existing members.</p>
     </div>
   </section>
 
