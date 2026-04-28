@@ -677,32 +677,26 @@
     max-width: 680px;
   }
 
-  /* Blue shimmer that sweeps down the form on first scroll-in */
-  .signup-card { position: relative; overflow: hidden; border-radius: 16px; }
-  .signup-card::after {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto 0;
-    height: 60%;
-    background: linear-gradient(180deg,
-      transparent 0%,
-      rgba(77, 109, 255, 0.0) 20%,
-      rgba(77, 109, 255, 0.18) 50%,
-      rgba(0, 188, 212, 0.18) 65%,
-      rgba(77, 109, 255, 0.0) 80%,
-      transparent 100%);
-    pointer-events: none;
-    opacity: 0;
-    transform: translateY(-100%);
+  /* Blue ring pulse cascades down the form's boxes on first scroll-in */
+  .pulse-blue {
+    animation: pulseBlueRing 1.2s ease-in-out;
   }
-  .signup-card.shimmer::after {
-    animation: shimmerDown 1.6s cubic-bezier(0.22, 0.61, 0.36, 1) 0.25s forwards;
-  }
-  @keyframes shimmerDown {
-    0%   { opacity: 0; transform: translateY(-100%); }
-    20%  { opacity: 1; }
-    80%  { opacity: 1; }
-    100% { opacity: 0; transform: translateY(220%); }
+  @keyframes pulseBlueRing {
+    0% {
+      box-shadow:
+        0 0 0 0 rgba(77, 109, 255, 0),
+        0 0 0 0 rgba(77, 109, 255, 0);
+    }
+    50% {
+      box-shadow:
+        0 0 0 2px rgba(77, 109, 255, 0.75),
+        0 0 18px 3px rgba(77, 109, 255, 0.45);
+    }
+    100% {
+      box-shadow:
+        0 0 0 0 rgba(77, 109, 255, 0),
+        0 0 0 0 rgba(77, 109, 255, 0);
+    }
   }
   .signup-success {
     text-align: center;
@@ -874,17 +868,29 @@
       const status = document.getElementById("form-status");
       if (!form) return;
 
-      // Blue shimmer sweep — fires once when the form first enters the viewport
+      // Blue ring cascade — slow rolling wave once form is mostly in view
       const card = document.getElementById("signup-card");
       if (card && "IntersectionObserver" in window) {
         const obs = new IntersectionObserver((entries) => {
           for (const e of entries) {
             if (e.isIntersecting) {
-              card.classList.add("shimmer");
+              const boxes = Array.from(card.querySelectorAll('.field input, .field textarea, .chip, .submit'));
+              const standardGap = 220;
+              const chipGap = 60;
+              let delay = 0;
+              boxes.forEach((box, i) => {
+                setTimeout(() => {
+                  box.classList.add('pulse-blue');
+                  setTimeout(() => box.classList.remove('pulse-blue'), 1200);
+                }, delay);
+                const next = boxes[i + 1];
+                // If the next box is a chip, use a fast gap — speeds entry into AND through the chip group
+                delay += next?.classList.contains('chip') ? chipGap : standardGap;
+              });
               obs.disconnect();
             }
           }
-        }, { threshold: 0.25 });
+        }, { threshold: 0.55 });
         obs.observe(card);
       }
 
