@@ -363,6 +363,13 @@
     translate: 0 0;
     will-change: translate, opacity;
   }
+  /* Letters are inline-block, which lets the browser line-break BETWEEN them —
+     in long languages (FR especially) this was splitting "Nous" into "N" + "ous".
+     Force each Latin-script word to stay together. CJK is excluded because there
+     is no whitespace between characters, so wrapping mid-character is normal. */
+  html:not(.lang-zh):not(.lang-ja) .phrase .word {
+    white-space: nowrap;
+  }
   .phrase.bounce-in .ltr {
     animation: ltrBounce 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) both;
     animation-delay: calc(var(--i, 0) * 0.045s);
@@ -761,8 +768,11 @@
     letter-spacing: 0;
   }
 
-  /* German tagline is longer — let it wrap instead of overflowing */
-  html.lang-de .tagline { white-space: normal; text-wrap: balance; }
+  /* Longer translations would overflow nowrap on narrow viewports — let them wrap */
+  html.lang-de .tagline,
+  html.lang-fr .tagline,
+  html.lang-es .tagline,
+  html.lang-pt .tagline { white-space: normal; text-wrap: balance; }
 
   /* CJK font stacks */
   html.lang-zh body {
