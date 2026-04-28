@@ -664,7 +664,7 @@
             throw new Error(data.error || "Submission failed");
           }
           const card = document.getElementById("signup-card");
-          card.innerHTML = '<div class="form-status success" style="font-size:1.05rem; line-height:1.6; text-align:center;"><h2 style="margin:0 0 1.25rem; font-size:1.4rem; color:#fff;">Thank you for applying.</h2><p style="margin:0 0 1rem; color:#ddd;">The Agentic Players Ball is a private circle for founders, builders, and researchers shaping the agentic era.</p><p style="margin:0; color:#aaa;">Every application is reviewed personally. If your work does not align with our membership, we may decline. Either way, you will hear from us.</p></div>';
+          card.innerHTML = '<div class="form-status success" style="font-size:1.05rem; line-height:1.6; text-align:center;"><h2 style="margin:0 0 1.25rem; font-size:1.4rem; color:#fff;">Thank you for applying.</h2><p style="margin:0 0 1rem; color:#ddd;">The Agentic Players Ball is a private circle for founders, builders, and researchers shaping the agentic era.</p><p style="margin:0; color:#aaa;">Every application is reviewed by our members. If your work does not align with our membership, we may decline. Either way, you will hear from us.</p></div>';
         } catch (err) {
           status.className = "form-status error";
           status.textContent = err.message || "Something went wrong. Try again.";
