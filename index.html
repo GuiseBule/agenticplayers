@@ -486,6 +486,16 @@
   }
 
   .submit:active { transform: translateY(0); }
+  .submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  .form-status {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: #ccc;
+    min-height: 1.4em;
+  }
+  .form-status.error { color: #ff7a9c; }
+  .form-status.success { color: #8be0a4; }
 
   @media (max-width: 420px) {
     .row { grid-template-columns: 1fr; }
@@ -590,6 +600,7 @@
         </div>
 
         <button type="submit" class="submit">Submit</button>
+        <div id="form-status" class="form-status" aria-live="polite"></div>
       </form>
     </div>
   </section>
@@ -611,5 +622,56 @@
     </nav>
     <div class="footer-mark">&copy; 2026 The Agentic Players Ball. All rights reserved.</div>
   </footer>
+
+  <script>
+    (function () {
+      const form = document.getElementById("signup-form");
+      const status = document.getElementById("form-status");
+      if (!form) return;
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        status.className = "form-status";
+        status.textContent = "";
+
+        const submitBtn = form.querySelector(".submit");
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Submitting...";
+
+        const fd = new FormData(form);
+        const identity = Array.from(form.querySelectorAll('input[name="identity"]:checked')).map(i => i.value);
+        const referred = form.querySelector('#referred')?.checked;
+
+        const payload = {
+          firstName: fd.get("firstName"),
+          lastName: fd.get("lastName"),
+          email: fd.get("email"),
+          linkedin: fd.get("linkedin"),
+          github: fd.get("github") || "",
+          identity: identity,
+          why: fd.get("why"),
+          referrerLinkedin: referred ? (fd.get("referrerLinkedin") || "") : "",
+        };
+
+        try {
+          const res = await fetch("/api/signup", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok) {
+            throw new Error(data.error || "Submission failed");
+          }
+          form.innerHTML = '<div class="form-status success" style="font-size:1.1rem;">Application received. We will be in touch.</div>';
+        } catch (err) {
+          status.className = "form-status error";
+          status.textContent = err.message || "Something went wrong. Try again.";
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Submit";
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
