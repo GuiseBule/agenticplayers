@@ -226,13 +226,34 @@
     letter-spacing: 0.04em;
   }
 
+  /* Intro section */
+  .intro {
+    padding: 4rem 2rem 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .intro-inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .intro p {
+    font-size: clamp(1rem, 2.2vmin, 1.2rem);
+    line-height: 1.7;
+    color: #bbb;
+    margin-bottom: 1rem;
+  }
+
+  .intro p:last-child { margin-bottom: 0; }
+
   /* Form section */
   .signup {
-    min-height: 50vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem 2rem 4rem;
+    padding: 3rem 2rem 5rem;
     position: relative;
     z-index: 1;
   }
@@ -393,6 +414,13 @@
     <div class="copy">
       <h1>The Agentic Players Ball</h1>
       <p class="tagline">A playground for the agentic elite.</p>
+    </div>
+  </section>
+
+  <section class="intro">
+    <div class="intro-inner">
+      <p>The Agentic Players Ball is a private circle for the operators, founders, and builders shaping the agentic era. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <p>We meet, we trade notes, we ship. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     </div>
   </section>
 
