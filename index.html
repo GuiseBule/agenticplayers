@@ -663,7 +663,7 @@
           if (!res.ok) {
             throw new Error(data.error || "Submission failed");
           }
-          form.innerHTML = '<div class="form-status success" style="font-size:1.1rem;">Application received. We will be in touch.</div>';
+          form.innerHTML = '<div class="form-status success" style="font-size:1.05rem; line-height:1.6;"><p style="margin:0 0 1rem;">Thank you for applying to The Agentic Players Ball.</p><p style="margin:0; color:#aaa;">We are a private circle for founders, builders, and researchers shaping the agentic era. Every application is reviewed personally. If your work does not align with our membership, we may decline. Either way, you will hear from us.</p></div>';
         } catch (err) {
           status.className = "form-status error";
           status.textContent = err.message || "Something went wrong. Try again.";
