@@ -273,21 +273,11 @@
 
   .signup-card {
     width: 100%;
-    max-width: 460px;
-    padding: 2.5rem 2rem;
-    background: rgba(15, 15, 20, 0.7);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 18px;
-    box-shadow:
-      0 20px 60px rgba(0, 0, 0, 0.6),
-      0 0 80px rgba(255, 80, 180, 0.08),
-      0 0 120px rgba(80, 160, 255, 0.06);
+    max-width: 480px;
   }
 
   .signup-card h2 {
-    font-size: clamp(1.5rem, 4vmin, 2.2rem);
+    font-size: clamp(1.6rem, 4vmin, 2.4rem);
     font-weight: 800;
     letter-spacing: -0.02em;
     line-height: 1.2;
@@ -306,7 +296,7 @@
     font-size: 0.95rem;
     color: #aaa;
     text-align: center;
-    margin-bottom: 1.75rem;
+    margin-bottom: 2rem;
   }
 
   .field {
@@ -466,6 +456,11 @@
         <div class="field">
           <label for="linkedin">LinkedIn profile</label>
           <input id="linkedin" name="linkedin" type="url" autocomplete="url" placeholder="https://linkedin.com/in/yourname" required>
+        </div>
+
+        <div class="field">
+          <label for="github">GitHub URL</label>
+          <input id="github" name="github" type="url" autocomplete="url" placeholder="https://github.com/yourname" required>
         </div>
 
         <div class="field">
