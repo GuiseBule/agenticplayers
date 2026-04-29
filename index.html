@@ -748,6 +748,19 @@
     text-wrap: balance;
   }
   .signup-success p:last-child { margin-bottom: 0; }
+  .signup-success p.accent-line {
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    background: linear-gradient(90deg, #ff2e88, #ff5a3c, #ffb800, #00bcd4, #4d6dff, #ff2e88);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: hue 11s linear infinite;
+    animation-delay: -5s;
+  }
 
   @media (max-width: 420px) {
     .row { grid-template-columns: 1fr; }
@@ -911,6 +924,7 @@
     "success.heading": "Thank you for applying.",
     "success.body1": "The Agentic Players Ball is a private circle for founders, builders, and researchers shaping the agentic era. Every application is reviewed by our members. If your work does not align with our membership, we may decline.",
     "success.body2": "Either way, you will hear from us.",
+    "success.body3": "We are preparing for launch, please strap yourself in.",
     "footer.copyright": "Built by <a href=\"https://www.linkedin.com/in/guisebule/\" target=\"_blank\" rel=\"noopener\">Root</a> with ❤️"
   };
 
@@ -1431,7 +1445,7 @@
           const data = await res.json().catch(() => ({}));
           if (!res.ok) throw new Error(data.error || "Submission failed");
           const card = document.getElementById("signup-card");
-          card.innerHTML = '<div class="signup-success"><h2>' + t('success.heading', 'Thank you for applying.') + '</h2><p>' + t('success.body1', 'The Agentic Players Ball is a private circle for founders, builders, and researchers shaping the agentic era. Every application is reviewed by our members. If your work does not align with our membership, we may decline.') + '</p><p>' + t('success.body2', 'Either way, you will hear from us.') + '</p></div>';
+          card.innerHTML = '<div class="signup-success"><h2>' + t('success.heading', 'Thank you for applying.') + '</h2><p>' + t('success.body1', 'The Agentic Players Ball is a private circle for founders, builders, and researchers shaping the agentic era. Every application is reviewed by our members. If your work does not align with our membership, we may decline.') + '</p><p>' + t('success.body2', 'Either way, you will hear from us.') + '</p><p class="accent-line">' + t('success.body3', 'We are preparing for launch, please strap yourself in.') + '</p></div>';
         } catch (err) {
           status.className = "form-status error";
           status.textContent = err.message || t('form.error.generic', 'Something went wrong. Try again.');
