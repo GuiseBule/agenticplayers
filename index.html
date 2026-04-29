@@ -326,6 +326,12 @@
     color: #555;
     letter-spacing: 0.04em;
   }
+  .footer-mark a {
+    color: #888;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .footer-mark a:hover { color: #ccc; }
 
   /* Intro section */
   .intro {
@@ -905,7 +911,7 @@
     "success.heading": "Thank you for applying.",
     "success.body1": "The Agentic Players Ball is a private circle for founders, builders, and researchers shaping the agentic era. Every application is reviewed by our members. If your work does not align with our membership, we may decline.",
     "success.body2": "Either way, you will hear from us.",
-    "footer.copyright": "© 2026 The Agentic Players Ball. All rights reserved."
+    "footer.copyright": "Built by <a href=\"https://www.linkedin.com/in/guisebule/\" target=\"_blank\" rel=\"noopener\">Root</a> with ❤️"
   };
 
   function applyMeta(data) {
@@ -1121,7 +1127,7 @@
       <span class="sep">|</span>
       <button class="lang-btn" data-lang="pt">PT</button>
     </nav>
-    <div class="footer-mark" data-i18n="footer.copyright">© 2026 The Agentic Players Ball. All rights reserved.</div>
+    <div class="footer-mark" data-i18n-html="footer.copyright">Built by <a href="https://www.linkedin.com/in/guisebule/" target="_blank" rel="noopener">Root</a> with ❤️</div>
   </footer>
 
   <script>
