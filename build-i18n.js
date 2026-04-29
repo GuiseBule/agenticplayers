@@ -204,6 +204,22 @@ for (const asset of ASSETS) {
 }
 console.log(`✓ copied ${copied} static asset${copied === 1 ? '' : 's'}`);
 
+/* Recursively copy /social/ (profile banners + preview page) into dist/social/ */
+function copyDirRecursive(src, dest) {
+  if (!fs.existsSync(src)) return 0;
+  fs.mkdirSync(dest, { recursive: true });
+  let count = 0;
+  for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
+    const s = path.join(src, entry.name);
+    const d = path.join(dest, entry.name);
+    if (entry.isDirectory()) count += copyDirRecursive(s, d);
+    else { fs.copyFileSync(s, d); count++; }
+  }
+  return count;
+}
+const socialCopied = copyDirRecursive(path.join(ROOT, 'social'), path.join(DIST, 'social'));
+if (socialCopied) console.log(`✓ copied ${socialCopied} file${socialCopied === 1 ? '' : 's'} from /social/`);
+
 /* Per-locale HTML */
 const template = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
 for (const lang of LOCALES) {

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Banner preview — The Agentic Players Ball</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #111;
+    color: #eee;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, sans-serif;
+    padding: 48px 24px;
+    line-height: 1.5;
+  }
+  .container { max-width: 1700px; margin: 0 auto; }
+  h1 { font-size: 24px; margin-bottom: 6px; font-weight: 700; }
+  .lead { color: #888; margin-bottom: 8px; font-size: 15px; }
+  .lead strong { color: #ccc; }
+  .legend { color: #888; margin-bottom: 40px; font-size: 13px; }
+  .legend .swatch {
+    display: inline-block;
+    width: 16px; height: 16px;
+    background: rgba(77, 109, 255, 0.35);
+    border: 2px dashed rgba(77, 109, 255, 0.9);
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+
+  .banner-wrap { margin-bottom: 56px; }
+  .banner-wrap h2 {
+    font-size: 18px;
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  .banner-wrap .meta {
+    color: #888;
+    font-size: 13px;
+    margin-bottom: 14px;
+    font-family: ui-monospace, SFMono-Regular, monospace;
+  }
+
+  .banner-frame {
+    position: relative;
+    display: block;
+    max-width: 100%;
+    border: 1px solid #333;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .banner-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .icon-zone {
+    position: absolute;
+    border: 2px dashed rgba(77, 109, 255, 0.85);
+    background: rgba(77, 109, 255, 0.18);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .icon-zone-label {
+    position: absolute;
+    color: rgba(77, 109, 255, 0.95);
+    font-size: 11px;
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    background: rgba(0, 0, 0, 0.55);
+    padding: 2px 6px;
+    border-radius: 3px;
+    pointer-events: none;
+  }
+
+  .actions {
+    margin-top: 14px;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+  }
+  .actions a {
+    color: #4d6dff;
+    text-decoration: none;
+    font-size: 14px;
+    border: 1px solid rgba(77, 109, 255, 0.4);
+    padding: 6px 14px;
+    border-radius: 999px;
+    transition: all 0.15s ease;
+  }
+  .actions a:hover {
+    color: #fff;
+    background: #4d6dff;
+    border-color: #4d6dff;
+  }
+  .actions .file-info {
+    color: #666;
+    font-size: 13px;
+    font-family: ui-monospace, SFMono-Regular, monospace;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Banner preview — The Agentic Players Ball</h1>
+  <p class="lead">Three social profile banners. <strong>Right-side composition</strong> with the disco ball + tagline; the <strong>left side is intentionally empty</strong> so your profile icon doesn't cover anything important.</p>
+  <p class="legend"><span class="swatch"></span> approximate position where your profile picture will sit on each platform</p>
+
+  <!-- LinkedIn personal: 1584×396; avatar ~152px, anchored bottom-left of cover, ~50px in -->
+  <div class="banner-wrap">
+    <h2>LinkedIn — personal profile cover</h2>
+    <div class="meta">1584 × 396 px · PNG</div>
+    <div class="banner-frame" style="aspect-ratio: 1584 / 396;">
+      <img src="linkedin_personal_1584x396.png" alt="LinkedIn cover banner">
+      <div class="icon-zone" style="left: 3.2%; bottom: 8%; width: 9.6%; aspect-ratio: 1;"></div>
+      <div class="icon-zone-label" style="left: 3.2%; bottom: 1%;">profile picture</div>
+    </div>
+    <div class="actions">
+      <a href="linkedin_personal_1584x396.png" download>Download PNG</a>
+      <span class="file-info">linkedin_personal_1584x396.png</span>
+    </div>
+  </div>
+
+  <!-- Twitter/X header: 1500×500; avatar 200px, bottom-left ~16px in, half-overlapping -->
+  <div class="banner-wrap">
+    <h2>X / Twitter — profile header</h2>
+    <div class="meta">1500 × 500 px · PNG</div>
+    <div class="banner-frame" style="aspect-ratio: 1500 / 500;">
+      <img src="twitter_x_1500x500.png" alt="X / Twitter header">
+      <div class="icon-zone" style="left: 1.1%; bottom: -8%; width: 13.3%; aspect-ratio: 1;"></div>
+      <div class="icon-zone-label" style="left: 1.1%; top: 92%;">profile picture</div>
+    </div>
+    <div class="actions">
+      <a href="twitter_x_1500x500.png" download>Download PNG</a>
+      <span class="file-info">twitter_x_1500x500.png</span>
+    </div>
+  </div>
+
+  <!-- Facebook cover: 820×312; avatar 170px on personal/page, bottom-left -->
+  <div class="banner-wrap">
+    <h2>Facebook — page cover</h2>
+    <div class="meta">820 × 312 px · PNG</div>
+    <div class="banner-frame" style="aspect-ratio: 820 / 312;">
+      <img src="facebook_cover_820x312.png" alt="Facebook cover">
+      <div class="icon-zone" style="left: 3%; bottom: 4%; width: 20.7%; aspect-ratio: 1;"></div>
+      <div class="icon-zone-label" style="left: 3%; bottom: -8%;">profile picture</div>
+    </div>
+    <div class="actions">
+      <a href="facebook_cover_820x312.png" download>Download PNG</a>
+      <span class="file-info">facebook_cover_820x312.png</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>
