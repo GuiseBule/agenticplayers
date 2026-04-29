@@ -200,7 +200,7 @@ Server-side normalisation:
 | GitHub | url | optional |
 | Telegram | singleLineText | always `@handle` |
 | Identity | multipleSelects | Founder / Builder / Researcher (English values, even on non-EN locales) |
-| Why | multilineText | the applicant's pitch (in whatever language they wrote it) |
+| Shipping | multilineText | what the applicant is currently shipping or researching (their concrete answer to the "Why are you agentic?" prompt) |
 | Referrer LinkedIn | url | optional |
 | Status | singleSelect | **Applicant** (default on create) / **Member** / **Declined** |
 | Decline Reason | multilineText | private, your eyes only |

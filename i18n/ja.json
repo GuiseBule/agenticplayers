@@ -20,7 +20,7 @@
   "form.identity_label": "あなたは？",
   "form.identity_aria": "アイデンティティ",
   "form.why_label": "なぜエージェントの道を？",
-  "form.why_placeholder": "創業、開発、研究などについてお聞かせください。",
+  "form.why_placeholder": "1〜2文で具体的に。今週、何を作っていますか？ 何を研究していますか？",
   "form.referred_label": "紹介者はいますか？",
   "form.voucher_label": "あなたを推薦できる方",
   "form.voucher_placeholder": "linkedin.com/in/theirname",

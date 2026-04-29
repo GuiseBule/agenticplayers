@@ -108,7 +108,7 @@ export async function onRequestPost({ request, env }) {
     "Email": email,
     "LinkedIn": linkedin,
     "Telegram": telegram,
-    "Why": why,
+    "Shipping": why,
     "Status": "Applicant",
     "Submitted At": new Date().toISOString(),
   };

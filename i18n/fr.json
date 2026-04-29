@@ -20,7 +20,7 @@
   "form.identity_label": "Qui êtes-vous ?",
   "form.identity_aria": "Identité",
   "form.why_label": "Pourquoi êtes-vous agentique ?",
-  "form.why_placeholder": "Dites-nous ce que vous avez fondé, construit ou recherché.",
+  "form.why_placeholder": "1-2 phrases, concrètes. Sur quoi travaillez-vous ou que recherchez-vous cette semaine ?",
   "form.referred_label": "Avez-vous été recommandé par quelqu’un ?",
   "form.voucher_label": "Qui peut vous recommander",
   "form.voucher_placeholder": "linkedin.com/in/leurnom",

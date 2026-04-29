@@ -20,7 +20,7 @@
   "form.identity_label": "你是哪类人？",
   "form.identity_aria": "身份",
   "form.why_label": "你为何走上 Agent 之路？",
-  "form.why_placeholder": "告诉我们你创立、构建或研究了什么。",
+  "form.why_placeholder": "1-2 句话，具体说明你这周在构建或研究什么。",
   "form.referred_label": "是否有人推荐你？",
   "form.voucher_label": "谁可以为你担保",
   "form.voucher_placeholder": "linkedin.com/in/theirname",
